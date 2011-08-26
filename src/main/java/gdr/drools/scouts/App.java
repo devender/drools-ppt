@@ -21,7 +21,7 @@ public class App {
 
 	void run() {
 		System.out.println(findClubType(new Person(Gender.FEMALE, 10, "Gill")).getClubType());
-		System.out.println(findClubType(new Person(Gender.MALE, 10, "DEv")).getClubType());
+		System.out.println(findClubType(new Person(Gender.MALE, 10, "Dev")).getClubType());
 	}
 
 	private Person findClubType(Person person) {
