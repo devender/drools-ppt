@@ -1,0 +1,19 @@
+package gdr.drools.leadrouting
+
+rule "lead match"
+when
+	$l: Lead()
+	$a: Agent(type == $l.type)
+	not Agent(type == $l.type, fulfilled < $a.fulfilled, conversionRate >= $a.conversionRate)
+then
+	$l.setAgent($a.getName());
+end
+
+rule "fall back"
+when
+	$l: Lead()
+	not (exists Agent(type == $l.type))
+	$a: Agent()
+then
+	$l.setAgent($a.getName());
+end

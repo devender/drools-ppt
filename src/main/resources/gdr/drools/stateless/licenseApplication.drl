@@ -1,0 +1,17 @@
+package gdr.drools.stateless
+
+rule "all other states"
+when
+    Applicant( age >= 18, leagallyBlind != true )
+    $a : Application( testScore > 75, state != "TX")     
+then
+    $a.setValid( true );
+end
+
+rule "texas"
+when
+    $a : Application( testScore > 60, state == "TX")     
+then
+    $a.setValid( true );
+end
+
