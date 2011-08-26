@@ -35,7 +35,7 @@ public class Agent {
 	}
 
 	public int hashCode() {
-		return new HashCodeBuilder(27, 57).append(conversionRate).append(type).append(fulfilled).hashCode();
+		return new HashCodeBuilder(27, 57).append(conversionRate).append(type).append(fulfilled).append(state).hashCode();
 	}
 	
 	public String getState() {
@@ -55,6 +55,6 @@ public class Agent {
 		}
 		Agent rhs = (Agent) obj;
 
-		return new EqualsBuilder().append(conversionRate, rhs.conversionRate).append(type, rhs.type).append(fulfilled, rhs.fulfilled).isEquals();
+		return new EqualsBuilder().append(conversionRate, rhs.conversionRate).append(type, rhs.type).append(fulfilled, rhs.fulfilled).append(state, rhs.state).isEquals();
 	}
 }

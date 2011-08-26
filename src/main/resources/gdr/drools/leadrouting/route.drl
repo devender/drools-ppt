@@ -28,3 +28,10 @@ then
 	$l.setAgent($a.getName());
 end
 
+rule "fall back 3"
+when
+	$l: Lead()
+	not (exists Agent())	
+then
+	$l.setMessage("call us back");
+end

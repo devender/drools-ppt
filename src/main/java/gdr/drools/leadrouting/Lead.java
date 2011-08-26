@@ -8,8 +8,9 @@ public class Lead {
 	private Type type;
 	private String agent;
 	private String state;
+	private String message;
 
-	public Lead(int credits, Type type,String state) {
+	public Lead(int credits, Type type, String state) {
 		this.credits = credits;
 		this.type = type;
 		this.state = state;
@@ -18,7 +19,7 @@ public class Lead {
 	public String getState() {
 		return state;
 	}
-	
+
 	public void setAgent(String agent) {
 		this.agent = agent;
 	}
@@ -35,8 +36,16 @@ public class Lead {
 		return type.name();
 	}
 
+	public void setMessage(String message) {
+		this.message = message;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
 	public int hashCode() {
-		return new HashCodeBuilder(27, 57).append(credits).append(type).hashCode();
+		return new HashCodeBuilder(27, 57).append(credits).append(type).append(state).hashCode();
 	}
 
 	@Override
@@ -52,6 +61,6 @@ public class Lead {
 		}
 		Lead rhs = (Lead) obj;
 
-		return new EqualsBuilder().append(credits, rhs.credits).append(type, rhs.type).isEquals();
+		return new EqualsBuilder().append(credits, rhs.credits).append(type, rhs.type).append(state, rhs.state).isEquals();
 	}
 }

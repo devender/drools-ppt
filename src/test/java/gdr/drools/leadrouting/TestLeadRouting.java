@@ -38,8 +38,8 @@ public class TestLeadRouting {
 		kbase.addKnowledgePackages(kbuilder.getKnowledgePackages());
 
 		ksession = kbase.newStatelessKnowledgeSession();
-		//ksession.addEventListener( new DebugWorkingMemoryEventListener() );
-		//ksession.addEventListener( new DebugWorkingMemoryEventListener() );
+		// ksession.addEventListener( new DebugWorkingMemoryEventListener() );
+		// ksession.addEventListener( new DebugWorkingMemoryEventListener() );
 		logger = KnowledgeRuntimeLoggerFactory.newFileLogger(ksession, "log/stateless");
 	}
 
@@ -59,85 +59,94 @@ public class TestLeadRouting {
 
 	@Test
 	public void highSchoolLead_simplematch() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
+		Lead lead = new Lead(0, Type.HIGHSCHOOL, "CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
-		
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
-		
-		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled","CA");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent", "CA");
+
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent", "CA");
+
+		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled", "CA");
 
 		Agent[] agents = new Agent[] { universityAgent, collegeAgent, highSchoolAgent_OneFullFilled };
-		
+
 		callEngine(lead, agents);
-		
+
 		assertEquals("highSchoolAgent_OneFullFilled", lead.getAgent());
 	}
 
 	@Test
 	public void highSchoolLead_fullfilment() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
+		Lead lead = new Lead(0, Type.HIGHSCHOOL, "CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent", "CA");
 
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
-		
-		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled","CA");
-		
-		Agent highSchoolAgent_ZeroFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled","CA");
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent", "CA");
 
-		Agent[] agents = new Agent[] {universityAgent, collegeAgent, highSchoolAgent_OneFullFilled, highSchoolAgent_ZeroFullFilled};
-		
+		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled", "CA");
+
+		Agent highSchoolAgent_ZeroFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled", "CA");
+
+		Agent[] agents = new Agent[] { universityAgent, collegeAgent, highSchoolAgent_OneFullFilled, highSchoolAgent_ZeroFullFilled };
+
 		callEngine(lead, agents);
 		assertEquals("highSchoolAgent_ZeroFullFilled", lead.getAgent());
 	}
-	
+
 	@Test
 	public void highSchoolLead_conversion() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
+		Lead lead = new Lead(0, Type.HIGHSCHOOL, "CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
-		
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
-		
-		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled","CA");
-		
-		Agent highSchoolAgent_ZeroFullFilled = new Agent(10.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled","CA");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent", "CA");
 
-		Agent[] agents = new Agent[] {universityAgent, collegeAgent, highSchoolAgent_OneFullFilled, highSchoolAgent_ZeroFullFilled};
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent", "CA");
+
+		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled", "CA");
+
+		Agent highSchoolAgent_ZeroFullFilled = new Agent(10.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled", "CA");
+
+		Agent[] agents = new Agent[] { universityAgent, collegeAgent, highSchoolAgent_OneFullFilled, highSchoolAgent_ZeroFullFilled };
 		callEngine(lead, agents);
-		
+
 		assertEquals("highSchoolAgent_OneFullFilled", lead.getAgent());
 	}
-	
+
 	@Test
 	public void alwaysProvideAnAgent() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
+		Lead lead = new Lead(0, Type.HIGHSCHOOL, "CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
-		
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent", "CA");
 
-		Agent[] agents = new Agent[] {universityAgent, collegeAgent};
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent", "CA");
+
+		Agent[] agents = new Agent[] { universityAgent, collegeAgent };
 		callEngine(lead, agents);
-		
+
 		System.out.println(lead.getAgent());
 		assertNotNull(lead.getAgent());
 	}
-	
+
 	@Test
 	public void alwaysProvideAnAgentState() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL,"TX");
+		Lead lead = new Lead(0, Type.HIGHSCHOOL, "TX");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
-		
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent", "CA");
 
-		Agent[] agents = new Agent[] {universityAgent, collegeAgent};
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent", "CA");
+
+		Agent[] agents = new Agent[] { universityAgent, collegeAgent };
 		callEngine(lead, agents);
-		
+
 		System.out.println(lead.getAgent());
 		assertNotNull(lead.getAgent());
+	}
+
+	@Test
+	public void noAgent() {
+		Lead lead = new Lead(0, Type.HIGHSCHOOL, "TX");
+		Agent[] agents = new Agent[] {};
+		callEngine(lead, agents);
+		assertNull(lead.getAgent());
+		assertEquals(lead.getMessage(), "call us back");
 	}
 
 }
