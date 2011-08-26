@@ -59,13 +59,13 @@ public class TestLeadRouting {
 
 	@Test
 	public void highSchoolLead_simplematch() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL);
+		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
 		
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent");
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
 		
-		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled");
+		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled","CA");
 
 		Agent[] agents = new Agent[] { universityAgent, collegeAgent, highSchoolAgent_OneFullFilled };
 		
@@ -76,15 +76,15 @@ public class TestLeadRouting {
 
 	@Test
 	public void highSchoolLead_fullfilment() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL);
+		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
 
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent");
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
 		
-		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled");
+		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled","CA");
 		
-		Agent highSchoolAgent_ZeroFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled");
+		Agent highSchoolAgent_ZeroFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled","CA");
 
 		Agent[] agents = new Agent[] {universityAgent, collegeAgent, highSchoolAgent_OneFullFilled, highSchoolAgent_ZeroFullFilled};
 		
@@ -94,15 +94,15 @@ public class TestLeadRouting {
 	
 	@Test
 	public void highSchoolLead_conversion() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL);
+		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
 		
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent");
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
 		
-		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled");
+		Agent highSchoolAgent_OneFullFilled = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchoolAgent_OneFullFilled","CA");
 		
-		Agent highSchoolAgent_ZeroFullFilled = new Agent(10.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled");
+		Agent highSchoolAgent_ZeroFullFilled = new Agent(10.9, Type.HIGHSCHOOL, 0, "highSchoolAgent_ZeroFullFilled","CA");
 
 		Agent[] agents = new Agent[] {universityAgent, collegeAgent, highSchoolAgent_OneFullFilled, highSchoolAgent_ZeroFullFilled};
 		callEngine(lead, agents);
@@ -112,11 +112,26 @@ public class TestLeadRouting {
 	
 	@Test
 	public void alwaysProvideAnAgent() {
-		Lead lead = new Lead(0, Type.HIGHSCHOOL);
+		Lead lead = new Lead(0, Type.HIGHSCHOOL,"CA");
 
-		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent");
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
 		
-		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent");
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
+
+		Agent[] agents = new Agent[] {universityAgent, collegeAgent};
+		callEngine(lead, agents);
+		
+		System.out.println(lead.getAgent());
+		assertNotNull(lead.getAgent());
+	}
+	
+	@Test
+	public void alwaysProvideAnAgentState() {
+		Lead lead = new Lead(0, Type.HIGHSCHOOL,"TX");
+
+		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent","CA");
+		
+		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent","CA");
 
 		Agent[] agents = new Agent[] {universityAgent, collegeAgent};
 		callEngine(lead, agents);

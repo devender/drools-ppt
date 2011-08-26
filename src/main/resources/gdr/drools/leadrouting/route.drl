@@ -3,17 +3,28 @@ package gdr.drools.leadrouting
 rule "lead match"
 when
 	$l: Lead()
-	$a: Agent(type == $l.type)
-	not Agent(type == $l.type, fulfilled < $a.fulfilled, conversionRate >= $a.conversionRate)
+	$a: Agent(type == $l.type, state == $l.state)
+	not Agent(type == $l.type, fulfilled < $a.fulfilled, conversionRate >= $a.conversionRate, state == $l.state)
 then
 	$l.setAgent($a.getName());
 end
 
-rule "fall back"
+rule "fall back 1"
 when
 	$l: Lead()
-	not (exists Agent(type == $l.type))
+	not (exists Agent(type == $l.type, state == $l.state))
+	$a: Agent(state == $l.state)
+then
+	$l.setAgent($a.getName());
+end
+
+rule "fall back 2"
+when
+	$l: Lead()
+	not (exists Agent(type == $l.type, state == $l.state))
+	not (exists Agent(state == $l.state))
 	$a: Agent()
 then
 	$l.setAgent($a.getName());
 end
+

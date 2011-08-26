@@ -8,12 +8,14 @@ public class Agent {
 	private Type type;
 	private int fulfilled;
 	private String name;
+	private String state;
 
-	public Agent(double conversionRate,Type type,int fulfilled, String name) {
+	public Agent(double conversionRate,Type type,int fulfilled, String name,String state) {
 		this.conversionRate = conversionRate;
 		this.type = type;
 		this.fulfilled = fulfilled;
 		this.name = name;
+		this.state = state;
 	}
 	
 	public double getConversionRate() {
@@ -34,6 +36,10 @@ public class Agent {
 
 	public int hashCode() {
 		return new HashCodeBuilder(27, 57).append(conversionRate).append(type).append(fulfilled).hashCode();
+	}
+	
+	public String getState() {
+		return state;
 	}
 
 	@Override

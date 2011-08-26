@@ -7,12 +7,18 @@ public class Lead {
 	private int credits = 0;
 	private Type type;
 	private String agent;
+	private String state;
 
-	public Lead(int credits, Type type) {
+	public Lead(int credits, Type type,String state) {
 		this.credits = credits;
 		this.type = type;
+		this.state = state;
 	}
 
+	public String getState() {
+		return state;
+	}
+	
 	public void setAgent(String agent) {
 		this.agent = agent;
 	}
