@@ -117,8 +117,10 @@ public class TestLeadRouting {
 		Agent universityAgent = new Agent(99.9, Type.UNIVERSITY, 1, "universityAgent", "CA");
 
 		Agent collegeAgent = new Agent(99.9, Type.COLLEGE, 1, "collegeAgent", "CA");
+		
+		Agent school = new Agent(99.9, Type.HIGHSCHOOL, 1, "highSchool", "TX");
 
-		Agent[] agents = new Agent[] { universityAgent, collegeAgent };
+		Agent[] agents = new Agent[] { universityAgent, collegeAgent, school };
 		callEngine(lead, agents);
 
 		System.out.println(lead.getAgent());
